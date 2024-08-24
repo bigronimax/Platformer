@@ -1,0 +1,58 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://ds4qvxkfrmpbd"]
+
+[ext_resource type="FontFile" uid="uid://bapub70kl2k4c" path="res://Styles/Born2bSportyV10.ttf" id="1_06ke3"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_n5gwt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k7kbj"]
+texture = SubResource("CanvasTexture_n5gwt")
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1qsax"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qon5y"]
+texture = SubResource("CanvasTexture_1qsax")
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_agqeg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s4ywe"]
+texture = SubResource("CanvasTexture_agqeg")
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_y3mlh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2e567"]
+texture = SubResource("CanvasTexture_y3mlh")
+modulate_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_k0ght"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y884g"]
+texture = SubResource("CanvasTexture_k0ght")
+modulate_color = Color(0, 0, 0, 1)
+
+[resource]
+Button/colors/font_color = Color(0.666569, 0.666569, 0.666568, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_06ke3")
+Button/styles/disabled = SubResource("StyleBoxTexture_k7kbj")
+Button/styles/focus = SubResource("StyleBoxTexture_qon5y")
+Button/styles/hover = SubResource("StyleBoxTexture_s4ywe")
+Button/styles/normal = SubResource("StyleBoxTexture_2e567")
+Button/styles/pressed = SubResource("StyleBoxTexture_y884g")

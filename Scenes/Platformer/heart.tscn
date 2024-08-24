@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvh18nvy3yq4o"]
+
+[ext_resource type="Texture2D" uid="uid://c4664nlb0u5kt" path="res://Sprites/Platformer/heart.png" id="1_03u38"]
+[ext_resource type="Script" path="res://Scripts/Platformer/heart.gd" id="1_7wk41"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nsjy3"]
+radius = 5.0
+
+[node name="Heart" type="Area2D" groups=["Hearts"]]
+collision_layer = 0
+script = ExtResource("1_7wk41")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_03u38")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nsjy3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

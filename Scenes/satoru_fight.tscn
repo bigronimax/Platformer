@@ -1,0 +1,22 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2yokn11w4vou"]
+
+[ext_resource type="PackedScene" uid="uid://ccy3nt15ttro4" path="res://Scenes/battle.tscn" id="1_p6ph8"]
+[ext_resource type="Resource" uid="uid://bjqm0kdwidofi" path="res://Resources/Satoro.tres" id="2_sfcxq"]
+[ext_resource type="AudioStream" uid="uid://ctpvf7wbh3sf4" path="res://Audio/Hollow_purple.mp3" id="3_16enx"]
+[ext_resource type="PackedScene" uid="uid://d0vyhvwduvl3b" path="res://Scenes/start_menu.tscn" id="4_1qkjb"]
+[ext_resource type="PackedScene" uid="uid://d2inhxmw1ftme" path="res://Scenes/pixel_explosion.tscn" id="4_p3dg2"]
+[ext_resource type="AudioStream" uid="uid://cxl4fpllcqlnc" path="res://Audio/death.mp3" id="5_auo3v"]
+[ext_resource type="AudioStream" uid="uid://c074lqh8qyo3" path="res://Audio/damage.mp3" id="6_ks0i4"]
+
+[node name="SatoruFight" instance=ExtResource("1_p6ph8")]
+enemy = ExtResource("2_sfcxq")
+music = ExtResource("3_16enx")
+
+[node name="Enemy" parent="." index="3"]
+after_battle_scene = ExtResource("4_1qkjb")
+deathParticle = ExtResource("4_p3dg2")
+death_sound = ExtResource("5_auo3v")
+hit_sound = ExtResource("6_ks0i4")
+
+[node name="EnemyAnimation" parent="Enemy" index="0"]
+process_mode = 3

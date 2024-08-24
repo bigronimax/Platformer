@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="PlayerMovementData" load_steps=8 format=3 uid="uid://c6su8bljag1cj"]
+
+[ext_resource type="Script" path="res://Scripts/Platformer/PlayerMovementData.gd" id="1_8i550"]
+[ext_resource type="PackedScene" uid="uid://cdqco45uehigj" path="res://Scenes/Platformer/dash_sprite.tscn" id="1_di1ao"]
+[ext_resource type="AudioStream" uid="uid://c4ot40h4oubfy" path="res://Audio/Platformer/dash.mp3" id="1_geya8"]
+[ext_resource type="PackedScene" uid="uid://ddgvrha0crbhi" path="res://Scenes/Platformer/foot_step.tscn" id="2_ebmpp"]
+[ext_resource type="AudioStream" uid="uid://bm5xdm1n6a137" path="res://Audio/Platformer/death.mp3" id="3_l357p"]
+[ext_resource type="AudioStream" uid="uid://rltxw0vg23cn" path="res://Audio/Platformer/jump.mp3" id="5_86ieu"]
+[ext_resource type="AudioStream" uid="uid://cqxtqmi7olhp1" path="res://Audio/Platformer/walljump.mp3" id="7_w4wfe"]
+
+[resource]
+script = ExtResource("1_8i550")
+gravity = 750
+acceleration = 800
+deacceleration = 3000
+friction = 1000
+current_friction = 1000
+max_horizontal_speed = 150
+max_fall_speed = 300
+jump_height = -250
+double_jump_height = -250
+squash_speed = 0.1
+wall_jump_height = -250
+wall_jump_push = 150
+max_fall_speed_wall_slide = 100
+wall_slide_gravity = 100
+dash_speed = 500
+dash_length = 0.1
+after_dash_time = 0.15
+double_jump = false
+dash_object = ExtResource("1_di1ao")
+foot_step = ExtResource("2_ebmpp")
+dash = ExtResource("1_geya8")
+jump = ExtResource("5_86ieu")
+wall_jump = ExtResource("7_w4wfe")
+death = ExtResource("3_l357p")

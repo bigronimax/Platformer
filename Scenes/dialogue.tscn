@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3o5pieanqvt2"]
+
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_8g6bn"]
+[ext_resource type="Script" path="res://Scripts/dialogue_box.gd" id="1_wwuw1"]
+[ext_resource type="FontFile" uid="uid://bapub70kl2k4c" path="res://Styles/Born2bSportyV10.ttf" id="2_n1imc"]
+[ext_resource type="Script" path="res://addons/ez_dialogue/ez_dialogue_node.gd" id="3_0iojp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4of5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[node name="Dialogue" type="Node2D" groups=["dialogue"]]
+script = ExtResource("1_8g6bn")
+
+[node name="DialogueBox" type="CanvasLayer" parent="."]
+script = ExtResource("1_wwuw1")
+
+[node name="TextBoxContainer" type="MarginContainer" parent="DialogueBox"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="DialogueBox/TextBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c4of5")
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueBox/TextBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Panel" type="Panel" parent="DialogueBox/TextBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueBox/TextBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="DialogueBox/TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(7, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_n1imc")
+theme_override_font_sizes/font_size = 16
+text = "*
+"
+
+[node name="Label" type="Label" parent="DialogueBox/TextBoxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("2_n1imc")
+theme_override_font_sizes/font_size = 16
+text = "Text"
+autowrap_mode = 3
+clip_text = true
+
+[node name="EzDialogue" type="Node" parent="."]
+script = ExtResource("3_0iojp")
+
+[connection signal="custom_signal_received" from="EzDialogue" to="DialogueBox" method="_on_ez_dialogue_custom_signal_received"]
+[connection signal="dialogue_generated" from="EzDialogue" to="." method="_on_ez_dialogue_dialogue_generated"]
+[connection signal="end_of_dialogue_reached" from="EzDialogue" to="DialogueBox" method="_on_ez_dialogue_end_of_dialogue_reached"]

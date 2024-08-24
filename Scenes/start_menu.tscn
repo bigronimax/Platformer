@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0vyhvwduvl3b"]
+
+[ext_resource type="Script" path="res://Scripts/start_menu.gd" id="1_j624d"]
+[ext_resource type="PackedScene" uid="uid://sx8tjkxfjtw5" path="res://Scenes/TopDown/green_hill.tscn" id="2_6rvi7"]
+[ext_resource type="AudioStream" uid="uid://c165bv2fwj5sb" path="res://Audio/snd_select.mp3" id="2_uagcu"]
+[ext_resource type="Theme" uid="uid://c2rbux0315r2k" path="res://Styles/pixel_theme.tres" id="3_xbdq8"]
+[ext_resource type="AudioStream" uid="uid://dn22c3kju03ci" path="res://Audio/ARMOR-CLAD-FAITH.mp3" id="4_s6rc6"]
+
+[node name="StartMenu" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j624d")
+select_sfx = ExtResource("2_uagcu")
+next_scene = ExtResource("2_6rvi7")
+music = ExtResource("4_s6rc6")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 32.0
+offset_bottom = 26.0
+
+[node name="StartGameButton" type="Button" parent="Menu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme = ExtResource("3_xbdq8")
+text = "Start Game"
+
+[node name="SettingsButton" type="Button" parent="Menu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme = ExtResource("3_xbdq8")
+text = "Settings
+"
+
+[node name="QuitButton" type="Button" parent="Menu/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme = ExtResource("3_xbdq8")
+text = "Quit"
+
+[node name="Settings" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="Settings/VBoxContainer"]
+custom_minimum_size = Vector2(64, 16)
+layout_mode = 2
+theme = ExtResource("3_xbdq8")
+text = "Back
+"
+
+[connection signal="pressed" from="Menu/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Menu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Settings/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,453 @@
+[gd_scene load_steps=42 format=3 uid="uid://chwnpccx742yn"]
+
+[ext_resource type="Script" path="res://Scripts/Platformer/player.gd" id="1_kes3q"]
+[ext_resource type="Resource" uid="uid://c6su8bljag1cj" path="res://Resources/DefaultPlayerMovementData.tres" id="2_ysxdn"]
+[ext_resource type="Texture2D" uid="uid://cdosfcp07sop" path="res://Sprites/Platformer/PlayerMovement.png" id="3_n04un"]
+[ext_resource type="Texture2D" uid="uid://hd5sv8gpp2wq" path="res://Sprites/Platformer/dash_particle.png" id="4_13j7p"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="6_6if2q"]
+[ext_resource type="Shader" path="res://Styles/shockwave.gdshader" id="9_kp7ro"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwqo3"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33k05"]
+atlas = ExtResource("3_n04un")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvoad"]
+atlas = ExtResource("3_n04un")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skxnd"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmpco"]
+atlas = ExtResource("3_n04un")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88m4u"]
+atlas = ExtResource("3_n04un")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onn7l"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kpy7"]
+atlas = ExtResource("3_n04un")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3necw"]
+atlas = ExtResource("3_n04un")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5lnv"]
+atlas = ExtResource("3_n04un")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y72a4"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qt2s"]
+atlas = ExtResource("3_n04un")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acpjv"]
+atlas = ExtResource("3_n04un")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4q0et"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ydgt"]
+atlas = ExtResource("3_n04un")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2ups"]
+atlas = ExtResource("3_n04un")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq4af"]
+atlas = ExtResource("3_n04un")
+region = Rect2(192, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1xqg"]
+atlas = ExtResource("3_n04un")
+region = Rect2(256, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qncy0"]
+atlas = ExtResource("3_n04un")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urcw0"]
+atlas = ExtResource("3_n04un")
+region = Rect2(384, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gt72"]
+atlas = ExtResource("3_n04un")
+region = Rect2(448, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq053"]
+atlas = ExtResource("3_n04un")
+region = Rect2(512, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cow6u"]
+atlas = ExtResource("3_n04un")
+region = Rect2(576, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4fx0"]
+atlas = ExtResource("3_n04un")
+region = Rect2(640, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhfli"]
+atlas = ExtResource("3_n04un")
+region = Rect2(704, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdogk"]
+atlas = ExtResource("3_n04un")
+region = Rect2(0, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hirw"]
+atlas = ExtResource("3_n04un")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oni8j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwqo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33k05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvoad")
+}],
+"loop": false,
+"name": &"DoubleJump",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skxnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmpco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88m4u")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onn7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kpy7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3necw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5lnv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y72a4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qt2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acpjv")
+}],
+"loop": false,
+"name": &"Jump",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4q0et")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ydgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2ups")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq4af")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1xqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qncy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urcw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gt72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq053")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cow6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4fx0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhfli")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdogk")
+}],
+"loop": false,
+"name": &"Slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hirw")
+}],
+"loop": true,
+"name": &"Turn",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rx7w"]
+size = Vector2(8, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g1oo"]
+size = Vector2(6, 20)
+
+[sub_resource type="Curve" id="Curve_805eu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.53314, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2gdpx"]
+shader = ExtResource("9_kp7ro")
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/force = 0.0
+shader_parameter/size = 0.2
+shader_parameter/thickness = 0.1
+
+[sub_resource type="Animation" id="Animation_sm582"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tlcgy"]
+resource_name = "shockwave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.05, 0.0]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_shader_center"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0bnci"]
+_data = {
+"RESET": SubResource("Animation_sm582"),
+"shockwave": SubResource("Animation_tlcgy")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+top_level = true
+collision_mask = 2
+floor_constant_speed = true
+floor_snap_length = 3.0
+script = ExtResource("1_kes3q")
+movement_data = ExtResource("2_ysxdn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 5)
+sprite_frames = SubResource("SpriteFrames_oni8j")
+animation = &"Idle"
+offset = Vector2(0, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_8rx7w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+script = ExtResource("6_6if2q")
+
+[node name="HazardDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_7g1oo")
+
+[node name="raycast_container" type="Marker2D" parent="."]
+position = Vector2(-12, 9)
+
+[node name="ground_ray1" type="RayCast2D" parent="raycast_container"]
+position = Vector2(16, -6)
+rotation = 1.5708
+scale = Vector2(1, 0.5)
+target_position = Vector2(4, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="ground_ray2" type="RayCast2D" parent="raycast_container"]
+position = Vector2(8, -6)
+rotation = 1.5708
+scale = Vector2(1, 0.5)
+target_position = Vector2(4, 0)
+collision_mask = 2
+collide_with_areas = true
+
+[node name="right_ray" type="RayCast2D" parent="raycast_container"]
+position = Vector2(17.5, -20)
+target_position = Vector2(0, 15)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="left_ray" type="RayCast2D" parent="raycast_container"]
+position = Vector2(6.5, -20)
+target_position = Vector2(0, 15)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="right_ledge_ray" type="RayCast2D" parent="raycast_container"]
+position = Vector2(12, -26)
+rotation = -1.5708
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="left_ledge_ray" type="RayCast2D" parent="raycast_container"]
+position = Vector2(12, -26)
+rotation = 1.5708
+target_position = Vector2(0, 10)
+collision_mask = 2
+
+[node name="dash_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="trail_timer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="after_dash_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="dash_ground_delay" type="Timer" parent="."]
+
+[node name="dash_particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, -16)
+emitting = false
+amount = 50
+lifetime = 0.5
+texture = ExtResource("4_13j7p")
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 19.0
+initial_velocity_max = 19.0
+angular_velocity_min = -180.0
+scale_amount_curve = SubResource("Curve_805eu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ShockwaveRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_2gdpx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shockwave_animation" type="AnimationPlayer" parent="CanvasLayer/ShockwaveRect"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_0bnci")
+}
+
+[connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="trail_timer" to="." method="_on_trail_timer_timeout"]
+[connection signal="timeout" from="after_dash_timer" to="." method="_on_after_dash_timer_timeout"]

@@ -1,0 +1,233 @@
+[gd_scene load_steps=19 format=3 uid="uid://ccy3nt15ttro4"]
+
+[ext_resource type="Script" path="res://Scripts/battle.gd" id="1_cloh4"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="2_xoqqs"]
+[ext_resource type="Shader" uid="uid://b06aw6jeppw60" path="res://Styles/hit_flash.tres" id="3_lah01"]
+[ext_resource type="PackedScene" uid="uid://b3o5pieanqvt2" path="res://Scenes/dialogue.tscn" id="4_kvlih"]
+[ext_resource type="Script" path="res://Scripts/battle_enemy.gd" id="4_kyfke"]
+[ext_resource type="Script" path="res://Scripts/actions_panel.gd" id="5_io8rt"]
+[ext_resource type="JSON" path="res://Dialogues/talk.json" id="6_i52de"]
+[ext_resource type="JSON" path="res://Dialogues/items.json" id="7_6gv58"]
+[ext_resource type="Theme" uid="uid://c2rbux0315r2k" path="res://Styles/pixel_theme.tres" id="8_lkskq"]
+[ext_resource type="AudioStream" uid="uid://c165bv2fwj5sb" path="res://Audio/snd_select.mp3" id="8_me0vo"]
+[ext_resource type="FontFile" uid="uid://bapub70kl2k4c" path="res://Styles/Born2bSportyV10.ttf" id="9_kxtvi"]
+[ext_resource type="PackedScene" uid="uid://bnp34jn3sontf" path="res://Scenes/hearts_container.tscn" id="10_wxqtk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6l6t"]
+shader = ExtResource("3_lah01")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_d0vxl"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"death"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_npios"]
+resource_name = "Hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8ew13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5u6bi"]
+_data = {
+"Death": SubResource("Animation_d0vxl"),
+"Hit": SubResource("Animation_npios"),
+"RESET": SubResource("Animation_8ew13")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t78l3"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cloh4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+script = ExtResource("2_xoqqs")
+
+[node name="Dialogue" parent="." instance=ExtResource("4_kvlih")]
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Enemy" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_w6l6t")
+custom_minimum_size = Vector2(105, 130)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_right = 52.5
+offset_bottom = 130.0
+grow_horizontal = 2
+expand_mode = 1
+script = ExtResource("4_kyfke")
+
+[node name="EnemyAnimation" type="AnimationPlayer" parent="Enemy"]
+libraries = {
+"": SubResource("AnimationLibrary_5u6bi")
+}
+
+[node name="ActionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t78l3")
+script = ExtResource("5_io8rt")
+select_sfx = ExtResource("8_me0vo")
+talk_dialogue = ExtResource("6_i52de")
+items_dialogue = ExtResource("7_6gv58")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Actions" type="HBoxContainer" parent="ActionsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Attack" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_lkskq")
+theme_override_fonts/font = ExtResource("9_kxtvi")
+theme_override_font_sizes/font_size = 12
+text = "Attack"
+
+[node name="Talk" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_lkskq")
+theme_override_fonts/font = ExtResource("9_kxtvi")
+theme_override_font_sizes/font_size = 12
+text = "Talk
+"
+
+[node name="Items" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_lkskq")
+theme_override_fonts/font = ExtResource("9_kxtvi")
+theme_override_font_sizes/font_size = 12
+text = "Items
+"
+
+[node name="Run" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("8_lkskq")
+theme_override_fonts/font = ExtResource("9_kxtvi")
+theme_override_font_sizes/font_size = 12
+text = "Run
+"
+
+[node name="HeartsContainer" parent="." instance=ExtResource("10_wxqtk")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -16.0
+offset_right = 88.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Attack" to="ActionsPanel" method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Talk" to="ActionsPanel" method="_on_talk_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Items" to="ActionsPanel" method="_on_items_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Run" to="ActionsPanel" method="_on_run_pressed"]

@@ -1,0 +1,154 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccy3nt15ttro4"]
+
+[ext_resource type="Texture2D" uid="uid://dff4hdxy6142j" path="res://Styles/satoro.png" id="1_n8pte"]
+[ext_resource type="Script" path="res://Scripts/battle.gd" id="1_sfh5m"]
+[ext_resource type="JSON" path="res://talk.json" id="2_brgpm"]
+[ext_resource type="JSON" path="res://items.json" id="2_pg7wx"]
+[ext_resource type="Theme" uid="uid://c2rbux0315r2k" path="res://Styles/pixel_theme.tres" id="2_xgdhd"]
+[ext_resource type="PackedScene" uid="uid://b26y4o0tuqc0r" path="res://Scenes/Platformer/level_one.tscn" id="3_1m8m3"]
+[ext_resource type="PackedScene" uid="uid://b3o5pieanqvt2" path="res://Scenes/dialogue.tscn" id="3_c0ejn"]
+[ext_resource type="FontFile" uid="uid://bapub70kl2k4c" path="res://Styles/Born2bSportyV10.ttf" id="3_xwyjl"]
+[ext_resource type="PackedScene" uid="uid://b1cba5w0ljlbi" path="res://Scenes/Platformer/level_two.tscn" id="4_h1pso"]
+[ext_resource type="AudioStream" uid="uid://ctpvf7wbh3sf4" path="res://Audio/Hollow_purple.mp3" id="5_2vq3n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pblk"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2fyr"]
+bg_color = Color(0.252196, 0.709258, 0.260573, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t78l3"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sfh5m")
+talk_dialogue = ExtResource("2_brgpm")
+items_dialogue = ExtResource("2_pg7wx")
+levels = Array[PackedScene]([ExtResource("3_1m8m3"), ExtResource("4_h1pso")])
+music = ExtResource("5_2vq3n")
+
+[node name="Dialogue" parent="." instance=ExtResource("3_c0ejn")]
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Enemy" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(105, 130)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.5
+offset_right = 52.5
+offset_bottom = 130.0
+grow_horizontal = 2
+texture = ExtResource("1_n8pte")
+expand_mode = 1
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -5.0
+offset_right = 53.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_5pblk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x2fyr")
+value = 50.0
+show_percentage = false
+
+[node name="ActionsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t78l3")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Actions" type="HBoxContainer" parent="ActionsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="Attack" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xgdhd")
+theme_override_fonts/font = ExtResource("3_xwyjl")
+theme_override_font_sizes/font_size = 12
+text = "Attack"
+
+[node name="Talk" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xgdhd")
+theme_override_fonts/font = ExtResource("3_xwyjl")
+theme_override_font_sizes/font_size = 12
+text = "Talk
+"
+
+[node name="Items" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xgdhd")
+theme_override_fonts/font = ExtResource("3_xwyjl")
+theme_override_font_sizes/font_size = 12
+text = "Items
+"
+
+[node name="Run" type="Button" parent="ActionsPanel/MarginContainer/Actions"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xgdhd")
+theme_override_fonts/font = ExtResource("3_xwyjl")
+theme_override_font_sizes/font_size = 12
+text = "Run
+"
+
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Talk" to="." method="_on_talk_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Items" to="." method="_on_items_pressed"]
+[connection signal="pressed" from="ActionsPanel/MarginContainer/Actions/Run" to="." method="_on_run_pressed"]

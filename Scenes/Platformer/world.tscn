@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjrn28b31qufg"]
+
+[ext_resource type="Script" path="res://Scripts/Platformer/world.gd" id="1_fmr5r"]
+[ext_resource type="PackedScene" uid="uid://chwnpccx742yn" path="res://Scenes/Platformer/player.tscn" id="2_ofdoa"]
+[ext_resource type="Theme" uid="uid://c2rbux0315r2k" path="res://Styles/pixel_theme.tres" id="4_qn7ty"]
+[ext_resource type="PackedScene" uid="uid://dvkfooq33rjra" path="res://Scenes/Platformer/level_tile_map.tscn" id="6_iihw2"]
+
+[sub_resource type="Animation" id="Animation_4i2ms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn/StartInLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Start in 3"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/StartIn:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_j0llc"]
+resource_name = "countdown"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn/StartInLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Start in 3", "Start in 2", "Start in 1"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/StartIn:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ncbo"]
+_data = {
+"RESET": SubResource("Animation_4i2ms"),
+"countdown": SubResource("Animation_j0llc")
+}
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_fmr5r")
+
+[node name="Player" parent="." instance=ExtResource("2_ofdoa")]
+safe_margin = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StartIn" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/StartIn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartInLabel" type="Label" parent="CanvasLayer/StartIn"]
+layout_mode = 2
+offset_left = 140.0
+offset_top = 87.0
+offset_right = 179.0
+offset_bottom = 93.0
+theme = ExtResource("4_qn7ty")
+text = "Start in 3"
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 13.0
+grow_horizontal = 2
+
+[node name="LevelTimeLabel" type="Label" parent="CanvasLayer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme = ExtResource("4_qn7ty")
+vertical_alignment = 1
+
+[node name="LevelTileMap" parent="." instance=ExtResource("6_iihw2")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_8ncbo")
+}
+
+[node name="Hazards" type="Node2D" parent="."]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddgvrha0crbhi"]
+
+[ext_resource type="Texture2D" uid="uid://bnat1qd5xy8wk" path="res://Sprites/Platformer/foot_step2.png" id="1_mmg4o"]
+[ext_resource type="Script" path="res://Scripts/Platformer/foot_step.gd" id="2_djt5c"]
+
+[sub_resource type="Curve" id="Curve_7l2fe"]
+_data = [Vector2(0, 0.781924), 0.0, 0.399739, 0, 0, Vector2(1, 0.107669), -2.70592, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 10
+lifetime = 0.4
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.7
+local_coords = true
+texture = ExtResource("1_mmg4o")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+scale_amount_curve = SubResource("Curve_7l2fe")
+script = ExtResource("2_djt5c")

@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://dehktt6ry55s1"]
+
+[ext_resource type="Script" path="res://Scripts/TopDown/satoru.gd" id="1_13ppc"]
+[ext_resource type="JSON" path="res://Dialogues/satoru.json" id="2_2a62w"]
+[ext_resource type="Texture2D" uid="uid://c3qqdsiptn40q" path="res://Sprites/TopDown/Satoru/Sprite-0050.png" id="3_7qer1"]
+[ext_resource type="PackedScene" uid="uid://bls16nwybylsg" path="res://Scenes/interaction_area.tscn" id="4_vayrf"]
+[ext_resource type="PackedScene" uid="uid://b3o5pieanqvt2" path="res://Scenes/dialogue.tscn" id="5_ymqgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul88s"]
+atlas = ExtResource("3_7qer1")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v80r"]
+atlas = ExtResource("3_7qer1")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q5lp"]
+atlas = ExtResource("3_7qer1")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l425y"]
+atlas = ExtResource("3_7qer1")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skove"]
+atlas = ExtResource("3_7qer1")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_twc8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul88s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v80r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q5lp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l425y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skove")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqcxi"]
+size = Vector2(13, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epr38"]
+size = Vector2(50, 40)
+
+[node name="Satoru" type="CharacterBody2D"]
+position = Vector2(1, -32)
+collision_layer = 2
+script = ExtResource("1_13ppc")
+dialogue_json = ExtResource("2_2a62w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_twc8i")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 3
+frame_progress = 0.437078
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 10.5)
+shape = SubResource("RectangleShape2D_aqcxi")
+
+[node name="InteractionArea" parent="." instance=ExtResource("4_vayrf")]
+action_name = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(-2, 20)
+shape = SubResource("RectangleShape2D_epr38")
+
+[node name="Dialogue" parent="." instance=ExtResource("5_ymqgy")]

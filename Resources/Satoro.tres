@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="BaseEnemy" load_steps=12 format=3 uid="uid://bjqm0kdwidofi"]
+
+[ext_resource type="JSON" path="res://Dialogues/after_first_level.json" id="1_3jgov"]
+[ext_resource type="PackedScene" uid="uid://b26y4o0tuqc0r" path="res://Scenes/Platformer/level_one.tscn" id="1_7bkev"]
+[ext_resource type="Script" path="res://Scripts/base_enemy.gd" id="1_bx7rh"]
+[ext_resource type="JSON" path="res://Dialogues/after_second_level.json" id="2_48cjr"]
+[ext_resource type="PackedScene" uid="uid://b1cba5w0ljlbi" path="res://Scenes/Platformer/level_two.tscn" id="2_dfucc"]
+[ext_resource type="JSON" path="res://Dialogues/after_third_level.json" id="3_mj4tv"]
+[ext_resource type="JSON" path="res://Dialogues/after_fourth_level.json" id="4_1sgr1"]
+[ext_resource type="PackedScene" uid="uid://b8j2ianequv0e" path="res://Scenes/Platformer/level_three.tscn" id="5_xqwu2"]
+[ext_resource type="Texture2D" uid="uid://bchnqfivactkk" path="res://Styles/satoru.png" id="6_4kvml"]
+[ext_resource type="PackedScene" uid="uid://x00ng1dt3te1" path="res://Scenes/Platformer/level_four.tscn" id="6_j63rd"]
+[ext_resource type="PackedScene" uid="uid://cg62demaaamd7" path="res://Scenes/Platformer/level_five.tscn" id="7_btom8"]
+
+[resource]
+script = ExtResource("1_bx7rh")
+name = "Enemy"
+texture = ExtResource("6_4kvml")
+health = 5
+levels = Array[PackedScene]([ExtResource("1_7bkev"), ExtResource("2_dfucc"), ExtResource("5_xqwu2"), ExtResource("6_j63rd"), ExtResource("7_btom8")])
+dialogues = Array[JSON]([ExtResource("1_3jgov"), ExtResource("2_48cjr"), ExtResource("3_mj4tv"), ExtResource("4_1sgr1")])

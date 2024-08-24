@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgp083hljx3vn"]
+
+[ext_resource type="FontFile" uid="uid://bapub70kl2k4c" path="res://Styles/Born2bSportyV10.ttf" id="1_23li2"]
+[ext_resource type="Theme" uid="uid://ds4qvxkfrmpbd" path="res://Styles/default_theme.tres" id="1_hrjf3"]
+
+[sub_resource type="GDScript" id="GDScript_hks3g"]
+script/source = "class_name ChoiceButton extends Button
+
+var choice_index: int
+
+signal choice_selected(choice_index)
+
+func _on_pressed():
+	choice_selected.emit(choice_index)
+"
+
+[node name="ChoiceButton" type="Button"]
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme = ExtResource("1_hrjf3")
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("1_23li2")
+theme_override_font_sizes/font_size = 16
+text = ">"
+script = SubResource("GDScript_hks3g")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
